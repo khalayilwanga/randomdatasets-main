@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:latest
+    # restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB}
+    ports:
+      - "3309:3306"
+    cap_add:
+      - SYS_NICE
+
+  backend:
+    restart: always
+    depends_on:
+      - db
+    image: truphenak/randomdatasets-flask-backend:1.0.0
+    ports:
+      - "5001:5000"
+    environment:
+      MYSQL_USER : ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB: ${MYSQL_DB}
+    command: ["./wait-for-it.sh","db:3306","-t" ,"300", "--", "./entrypoint.sh"]
+
+  frontend:
+    restart: always
+    depends_on:
+      - backend
+    image: truphenak/randomdatasets-react-frontend:1.1.0
+    ports:
+      - "3001:3000"
+    command: ["./wait-for-it.sh","backend:5000","-t" ,"800", "--", "./entrypoint.sh"]
+
+   
+ 
+
+  
+    
+ 
+    
