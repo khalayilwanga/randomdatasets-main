@@ -35,7 +35,8 @@ Backend must be a Flask server. The data of the graphs must be stored in a MySQL
 
 You must create a docker file or a docker-compose script to run both the frontend and the backend separately.
 
-# SOLUTION
+--------------------------------------------------------------------------------------------------------------------------------------
+## Solution
 
 Find the docker-compose script to run all 3 containers within the same network at the root of this repository.
 
