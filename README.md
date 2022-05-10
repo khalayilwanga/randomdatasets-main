@@ -34,3 +34,16 @@ Backend must be a Flask server. The data of the graphs must be stored in a MySQL
 ## Docker
 
 You must create a docker file or a docker-compose script to run both the frontend and the backend separately.
+
+# SOLUTION
+
+Find the docker-compose script to run all 3 containers within the same network at the root of this repository.
+
+To run all containers:  
+`docker-compose --env-file sample.env up`  
+To stop all containers:  
+`docker-compose --env-file sample.env down`
+
+Repositories relevant to the project:  
+frontend:found [here](https://github.com/khalayilwanga/randomdatasets-frontend)  
+backend:found [here](https://github.com/khalayilwanga/randomdatasets-backend)
